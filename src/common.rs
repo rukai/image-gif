@@ -145,7 +145,7 @@ impl Frame<'static> {
         }
         frame.width = width;
         frame.height = height;
-        let nq = color_quant::NeuQuant::new(1, 256, pixels);
+        let nq = color_quant::NeuQuant::new(30, 256, pixels);
         frame.buffer = Cow::Owned(pixels.chunks(4).map(|pix| nq.index_of(pix) as u8).collect());
         frame.palette = Some(nq.color_map_rgb());
         frame.transparent = if let Some(t) = transparent {
